@@ -25,6 +25,3 @@ while inp != 'q':
     else:
         print("That is not a valid command. Try again.")
         continue
-
-
-

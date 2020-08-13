@@ -1,7 +1,12 @@
 from gpiozero import PhaseEnableMotor
 
-motor1 = PhaseEnableMotor(26,20)
-motor2 = PhaseEnableMotor(16,21)
+
+def clamp(value, min_, max_):
+    return min(max_, max(min_, value))
+
+
+motor1 = PhaseEnableMotor(26, 20)
+motor2 = PhaseEnableMotor(16, 21)
 
 speed = 1.0
 
@@ -26,16 +31,10 @@ while inp != 'q':
         motor1.stop()
         motor2.stop()
     elif inp == 'p':
-        try:
-            pwm = float(input("Any number from 0.0 - 1.0 will affect the PWM duty cycle: "))
-            assert pwm <= 1
-            assert pwm >= 0
-            speed = pwm
-        except:
-            print("An error occurred, try again")
-            continue
+        pwm = float(input("Any number from 0.0 - 1.0 will affect the \
+            PWM duty cycle: "))
+        speed = clamp(pwm, 0.0, 1.0)
     elif inp == 'q':
         break
     else:
         print("I don''t know what that means, try again")
-

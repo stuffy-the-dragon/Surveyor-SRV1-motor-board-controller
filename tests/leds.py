@@ -16,4 +16,3 @@ while userin != 'q':
         led2.toggle()
     else:
         print("Incorrect command try again")
-
